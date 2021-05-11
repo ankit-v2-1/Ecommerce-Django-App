@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load cart %}
+{% load custom_filter %}
+
+<section class="orders">
+    <div>
+        <h1>orders page</h1>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Sno.</th>
+                <th>Image</th>
+                <th>Product</th>
+                <th>Date</th>
+                <th>Price</th>
+                <th>Quentity</th>
+                <th>total</th>
+                <th>Status</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{forloop.revcounter}}</td>
+                <td><img src="{{order.product.image.url}}" alt=""/></td>
+                <td>{{order.product.name}}</td>
+                <td>{{order.date}}</td>
+                <td>{{order.price | currency}}</td>
+                <td>{{order.quantity}}</td>
+                <td>{{order.quantity|multiply:order.price| currency }}</td>
+                {% if order.status %}
+                <td>Completed</td>
+                {%else%}
+                <td>Pending</td>
+                {% endif %}
+
+
+
+            </tr>
+            {% endfor %}
+            </tbody>
+            </tbody>
+        </table>
+    </div>
+
+    {% endblock %}
+
