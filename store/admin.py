@@ -8,7 +8,7 @@ from .models.orders import Order
 # Register your models here.
 
 class AdminProduct(admin.ModelAdmin):
-    list_display = ['name', 'price', 'category']
+    list_display = ['name', 'price', 'category', 'stock']
     search_fields = ("name__startswith",)
 
 
@@ -22,7 +22,7 @@ class AdminCustomer(admin.ModelAdmin):
 
 
 class AdminOrder(admin.ModelAdmin):
-    list_display = ['customer', 'product','price', 'quantity', 'total', 'address', 'phone', 'date','status']
+    list_display = ['customer', 'product', 'price', 'quantity', 'total', 'address', 'phone', 'date', 'status']
     search_fields = ("phone__startswith",)
 
 
@@ -30,8 +30,6 @@ admin.site.register(Product, AdminProduct)
 admin.site.register(Category, AdminCategory)
 admin.site.register(Customer, AdminCustomer)
 admin.site.register(Order, AdminOrder)
-
-
 
 admin.site.site_header = 'KD Fresh Dashboard'
 admin.site.site_title = 'Dashboard'

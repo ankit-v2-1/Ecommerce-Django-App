@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 
-
 {% block content %}
 {% load cart %}
 {% load custom_filter %}
@@ -18,18 +17,20 @@
 </div>
 
 
-
 <div id='allproducts'>
     {% for product in products %}
 
-    <div  id="{{product.id}}" >
-        <img  src="{{product.image.url}}"  height="200" width="200" >
+    <div id="{{product.id}}">
+        <img src="{{product.image.url}}" height="200" width="200">
         <div class="card-body">
             <h5 class="card-title">{{product.name}}</h5>
+            <p class="card-text"><b>{{product.actual_price | currency}}</b></p>
             <p class="card-text"><b>{{product.price | currency}}</b></p>
 
+            {% if product.stock %}
+
             <section class="cart">
-                {% if product|is_in_cart:request.session.cart %}
+
                 <div class="row no-gutters">
                     <form action="/#{{product.id}}" class="col-2 " method="post">
                         {% csrf_token %}
@@ -44,6 +45,15 @@
                         <input type="submit" value=" + " class="btn btn-block btn-light border-left">
                     </form>
                 </div>
+                {% if product|is_in_cart:request.session.cart %}
+
+                <form action="/cart" method="POST" class="btn-block">
+                    {% csrf_token %}
+                    <input hidden type="text" name='product' value='{{product.id}}'>
+                    <input type="submit" class="float-right btn btn-light  form-control" value="view Cart">
+                </form>
+
+
                 {% else %}
                 <form action="/#{{product.id}}" method="POST" class="btn-block">
                     {% csrf_token %}
@@ -55,6 +65,9 @@
             </section>
 
 
+            {% else %}
+            <h1> out of stock </h1>
+            {% endif %}
 
 
         </div>
@@ -62,10 +75,6 @@
     {% endfor %}
 
 </div>
-
-
-
-
 
 
 {% endblock %}
