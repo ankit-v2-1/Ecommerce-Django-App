@@ -2,41 +2,39 @@
 
 {% block content %}
 
+<div class="login-page">
 
-<section class="signup">
     <div class="form">
 
-        <h3>Create an account</h3>
+
         <form action="/signup" method="post">
 
             {% csrf_token %}
 
             {% if error %}
-            <h1> {{error}}</h1>
+            </h3> {{error}}</h3>
             {% endif %}
 
-            <label for="firstname">First name</label>
-            <input type="text" name="firstname" id="firstname" required>
+            <input type="text" name="firstname" id="firstname" placeholder="first name" required>
 
-            <label for="lastname">Last name</label>
-            <input type="text" name="lastname" id="lastname" required>
+            <input type="text" name="lastname" id="lastname" placeholder="last name" required>
 
-            <label for="phone">Phone</label>
-            <input type="text" name="phone" id="phone" required>
+            <input type="text" name="phone" id="phone" placeholder="phone no" required>
 
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" placeholder="example@gmail.com" required>
+            <input type="email" name="email" id="email" placeholder="example@gmail.com" placeholder="email" required>
 
-            <label for="password">Password</label>
-            <input type="text" name="password" id="Password" placeholder="*******" required>
+            <input type="text" name="password" id="Password" placeholder="*******" placeholder="password" required>
 
-            <input type="submit" value="Create an account">
+            <input type="submit" id="button" value="Create an account">
 
+            <p class="message">Already registered? <a href="/login">Sign In</a></p>
         </form>
 
     </div>
+</div>
 
-</section>
+
+
 
 
 {% endblock %}

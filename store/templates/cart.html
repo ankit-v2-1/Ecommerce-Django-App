@@ -3,129 +3,101 @@
 {% load cart %}
 {% load custom_filter %}
 
-<section class="cart">
-    <div>
-        {% for product in products %}
-        <table>
-            <thead>
-            <tr>
-                <th>Sno.</th>
-                <th>Image</th>
-                <th>Product</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>total</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>{{forloop.counter}}</td>
-                <td><img src="{{product.image.url}}" alt=""/></td>
-                <td>{{product.name}}</td>
-                <td>{{product.price | currency}}</td>
-                <td>{{product | cart_quantity:request.session.cart}}</td>
-                <td>{{product | price_total:request.session.cart | currency}}</td>
+<div class="cart-heading">
+
+    <a href="">My Cart</a>
+</div>
 
 
+<div class="my-cart">
 
-                 <div class="row no-gutters" id="{{product.id}}">
-                    <form action="/#{{product.id}}" class="col-2 " method="post">
-                        {% csrf_token %}
-                        <input hidden type="text" name='product' value='{{product.id}}'>
-                        <input hidden type="text" name='remove' value='True'>
-                        <input type="submit" value=" - " class="btn btn-block btn-light border-right">
-                    </form>
-                    <div class="text-center col">{{product|cart_quantity:request.session.cart}} in Cart</div>
-                    <form action="/#{{product.id}}"  class="col-2 " method="post">
-                        {% csrf_token %}
-                        <input hidden type="text" name='product' value='{{product.id}}'>
-                        <input type="submit" value=" + " class="btn btn-block btn-light border-left">
-                    </form>
+    {% for product in products %}
+
+    <div class="cart-product-card">
+
+
+        <div class="product-img">
+            <img src="{{product.image.url}}" alt="{{product.name}}">
+        </div>
+
+
+        <div class="product-details">
+
+
+            <h4 class="product-name">{{product.name}}</h4>
+            <div class="product-price">{{product.price | currency}}<small></small></div>
+
+            <div class="product-quantity">Q-{{product | cart_quantity:request.session.cart}}</div>
+            <div class="product-quantity">
+                <form  method="post">
+                    {% csrf_token %}
+                    <input hidden type="text" name="product" value="{{product.id}}"/>
+                    <input hidden type="text" name="remove" value="True"/>
+                    <input type="submit" value=" − " class="quantity-button"/>
+                </form>
+                <div class="quantity-no">
+                    <p>{{product|cart_quantity:request.session.cart}}</p>
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            </tr>
-            {% endfor %}
-            </tbody>
-            <tfoot>
-            <tr>
-                <th colspan="4">Delivery Charge</th>
-                {% if products|total_cart_price:request.session.cart < 199 %}
-                <th>₹ 20</th>
-
-                {% else %}
-                <th>₹ 0</th>
-                {% endif %}
-
-                <th colspan="4">Total</th>
-                <th>{{ products|total_cart_price:request.session.cart | delivery_charge|currency }}</th>
-            </tr>
-            </tfoot>
-        </table>
-    </div>
-
-
-    <div class="checkout">
-        <a href="#" data-toggle="modal" data-target="#exampleModal"
-           class="btn btn-outline-info border rounded  col-lg-3 float-right">Check out</a>
-
-    </div>
-
-
-</section>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">
-                    Check Out Form
-                </h5>
-                <hr>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <form  method="post">
+                    {% csrf_token %}
+                    <input hidden type="text" name="product" value="{{product.id}}"/>
+                    <input type="submit" value=" + " class="quantity-button"/>
+                </form>
             </div>
 
 
-            <div class="modal-body">
-                <div class="m-2 p-3">
-                    <form action="/check-out" method="POST">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <label for="">Address</label>
-                            <input required type="text" name="address" id="" class="form-control" placeholder=""
-                                   aria-describedby="helpId">
-
-                        </div>
-                        <div class="form-group">
-                            <label for="">Phone</label>
-                            <input required type="text" name="phone" id="" class="form-control" placeholder=""
-                                   aria-describedby="helpId">
-                        </div>
-
-                        <input type="submit" class="btn float-right btn-outline-info col-lg-6" value="Check out">
-                    </form>
-                </div>
+            <div class="total-price">
+                <h4>Total = {{product | price_total:request.session.cart | currency}}</h4>
             </div>
 
         </div>
+
+
     </div>
+
+
+    {% endfor %}
+
+
+</div>
+
+<div class="final-price">
+
+    <div>
+        <div class="delivery-charge"></div>
+        {% if products|total_cart_price:request.session.cart < 199 %} <h4>Delivery Charge ₹ 20</h4>
+        {% else %}
+        <h4>Delivery Charge ₹ 0</h4>
+
+
+        {% endif %}
+    </div>
+
+    <div class="total-price">
+        <h4> Total {{ products|total_cart_price:request.session.cart | delivery_charge|currency }} </h4>
+    </div>
+
+</div>
+
+</div>
+
+
+<div class="checkout-details">
+
+
+    <form action="/check-out" method="POST" class="order-form">
+        {% csrf_token %}
+
+
+        <input required type="text" name="address" id="" placeholder="Full Address  (Only Motihari)">
+
+        <input required type="text" name="phone" id="" placeholder="Phone no">
+
+
+        <input type="submit" id="button" value="place order">
+    </form>
+
+
 </div>
 
 

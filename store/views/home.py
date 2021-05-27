@@ -31,6 +31,8 @@ class Index(View):
         print('cart', request.session['cart'])
         return redirect('homepage')
 
+    
+
     def get(self, request):
         cart = request.session.get('cart')
         if not cart:
@@ -47,3 +49,4 @@ class Index(View):
         data['products'] = products
         data['categories'] = categories
         return render(request, 'index.html', data)
+

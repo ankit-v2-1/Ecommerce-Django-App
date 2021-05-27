@@ -3,48 +3,63 @@
 {% load cart %}
 {% load custom_filter %}
 
-<section class="orders">
-    <div>
-        <h1>orders page</h1>
+<div class="order">
+    <a href="">Order History</a>
+</div>
 
-        <table>
-            <thead>
-            <tr>
-                <th>Sno.</th>
-                <th>Image</th>
-                <th>Product</th>
-                <th>Date</th>
-                <th>Price</th>
-                <th>Quentity</th>
-                <th>total</th>
-                <th>Status</th>
 
-            </tr>
-            </thead>
-            <tbody>
-            {% for order in orders %}
-            <tr>
-                <td>{{forloop.revcounter}}</td>
-                <td><img src="{{order.product.image.url}}" alt=""/></td>
-                <td>{{order.product.name}}</td>
-                <td>{{order.date}}</td>
-                <td>{{order.price | currency}}</td>
-                <td>{{order.quantity}}</td>
-                <td>{{order.quantity|multiply:order.price| currency }}</td>
-                {% if order.status %}
-                <td>Completed</td>
-                {%else%}
-                <td>Pending</td>
-                {% endif %}
+<div class="my-orders">
+    {% for order in orders %}
+    <div class="order-card">
+
+
+        {% if order.status %}
+        <div class="badge-order">
+            <p class="complete">complete</p>
+        </div>
 
 
 
-            </tr>
-            {% endfor %}
-            </tbody>
-            </tbody>
-        </table>
+        {%else%}
+        <div class="pending">
+            <p>pending</p>
+        </div>
+
+        {% endif %}
+
+        <div class="product-img">
+            <img src="{{order.product.image.url}}" alt="{{order.product.name}}">
+        </div>
+        <div class="product-details">
+            <p> Order No. {{forloop.revcounter}}</p>
+
+            <span class="product-catagory"> {{order.date}}</span>
+            <h4 class="product-name">{{order.product.name}}</h4>
+            <div class="product-price">{{order.price | currency}}<small></small></div>
+
+            <div class="product-quantity">Q-{{order.quantity}}</div>
+
+            <p class="total">Total {{order.quantity|multiply:order.price| currency }}</p>
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
     </div>
+    {% endfor %}
 
-    {% endblock %}
+</div>
 
+{% endblock %}
