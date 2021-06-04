@@ -26,9 +26,9 @@ class Login(View):
                     Login.return_url = None
                     return redirect('homepage')
             else:
-                error_message = 'Email or Password invalid !!'
+                error_message = 'Email or Password invalid'
         else:
-            error_message = 'Email or Password invalid !!'
+            error_message = 'Email or Password invalid'
 
         print(email, password)
         return render(request, 'login.html', {'error': error_message})

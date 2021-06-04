@@ -9,6 +9,7 @@
 </div>
 
 
+
 <div class="my-cart">
 
     {% for product in products %}
@@ -29,19 +30,19 @@
 
             <div class="product-quantity">Q-{{product | cart_quantity:request.session.cart}}</div>
             <div class="product-quantity">
-                <form  method="post">
+                <form method="post">
                     {% csrf_token %}
-                    <input hidden type="text" name="product" value="{{product.id}}"/>
-                    <input hidden type="text" name="remove" value="True"/>
-                    <input type="submit" value=" − " class="quantity-button"/>
+                    <input hidden type="text" name="product" value="{{product.id}}" />
+                    <input hidden type="text" name="remove" value="True" />
+                    <input type="submit" value=" − " class="quantity-button" />
                 </form>
                 <div class="quantity-no">
                     <p>{{product|cart_quantity:request.session.cart}}</p>
                 </div>
-                <form  method="post">
+                <form method="post">
                     {% csrf_token %}
-                    <input hidden type="text" name="product" value="{{product.id}}"/>
-                    <input type="submit" value=" + " class="quantity-button"/>
+                    <input hidden type="text" name="product" value="{{product.id}}" />
+                    <input type="submit" value=" + " class="quantity-button" />
                 </form>
             </div>
 
@@ -66,11 +67,11 @@
     <div>
         <div class="delivery-charge"></div>
         {% if products|total_cart_price:request.session.cart < 199 %} <h4>Delivery Charge ₹ 20</h4>
-        {% else %}
-        <h4>Delivery Charge ₹ 0</h4>
+            {% else %}
+            <h4>Delivery Charge ₹ 0</h4>
 
 
-        {% endif %}
+            {% endif %}
     </div>
 
     <div class="total-price">

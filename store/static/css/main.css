@@ -7,6 +7,12 @@ html {
   box-sizing: border-box;
 }
 
+input {
+-webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+}
+
 body {
   font-family: poppins;
   margin: 0px;
@@ -26,7 +32,7 @@ a {
   
   width: 100%;
   text-align: center;
-  padding-top: 20px;
+  padding-top: 15px;
 
   cursor: pointer;
 }
@@ -334,4 +340,10 @@ footer{
  line-height: normal;
  font-size: auto;
  }
+}
+
+.footer-company-name a:link {
+  color:#8f9296;
+  background-color: transparent;
+  text-decoration: none;
 }

@@ -11,7 +11,7 @@ class Order(models.Model):
                                  on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
     price = models.IntegerField()
-    address = models.CharField(max_length=50, default='', blank=True)
+    address = models.CharField(max_length=200, default='', blank=True)
     phone = models.CharField(max_length=50, default='', blank=True)
     date = models.DateTimeField(default=datetime.datetime.now)
     total = models.IntegerField(default=0)
