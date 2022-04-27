@@ -16,4 +16,4 @@ WORKDIR /app
 EXPOSE 8000
 
 COPY ./entrypoint.sh /
-ENTRYPOINT ["sh", "/entrypoint.sh"]
+CMD ["gunicorn", "--bind", ":8000", "--workers", "3", "Eshop.wsgi:application"]
