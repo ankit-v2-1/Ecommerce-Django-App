@@ -1,7 +1,0 @@
-*/venv
-.venv
-.DS_Store
-..gitignore.un~
-__pycache__/
-*.py[cod]
-*$py.class
