@@ -1,3 +1,3 @@
 #!bin/sh
 
-gunicorn Eshop.wsgi:application --bind :8000
+gunicorn Eshop.wsgi:application --bind :5000

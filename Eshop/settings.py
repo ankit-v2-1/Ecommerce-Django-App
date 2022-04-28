@@ -17,7 +17,7 @@ SECRET_KEY = 'demo-key-only-for-testing'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*','kdfresh.in','www.kdfresh.in']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

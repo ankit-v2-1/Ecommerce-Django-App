@@ -13,7 +13,7 @@ RUN pip install -r requirements.txt
 COPY . /app
 
 WORKDIR /app
-EXPOSE 8000
+EXPOSE 5000
 
 COPY ./entrypoint.sh /
-CMD ["gunicorn", "--bind", ":8000", "--workers", "3", "Eshop.wsgi:application"]
+ENTRYPOINT ["sh", "/entrypoint.sh"]
