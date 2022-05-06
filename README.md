@@ -21,7 +21,7 @@
 <br />
 <p align="center">
   <a href="https://kdfresh.in">
-    <img src="https://github.com/ankit-v2-1/ecommerce-django-app/blob/dev/staticfiles/assets/logo5.png" alt="Logo" width="330" height="100">
+    <img src="https://github.com/ankit-v2-1/ecommerce-django-app/blob/dev/staticfiles/assets/logo5.png" alt="Logo" width="317" height="96">
   </a>
 
   <h3 align="center">Kdfresh.in</h3>
