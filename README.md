@@ -11,7 +11,7 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![License: MIT][license-shield]][license-url]
+[![MIT License][license-shield]][license-url]
 [![Twitter][twitter-shield]][twitter-url]
 
 
