@@ -11,7 +11,7 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-
+[![MIT License][license-shield]][license-url]
 [![Twitter][twitter-shield]][twitter-url]
 
 
@@ -66,7 +66,7 @@
 [stars-url]: https://github.com/ankit-v2-1/ecommerce-django-app/stargazers
 [issues-shield]: https://img.shields.io/github/issues/ankit-v2-1/ecommerce-django-app.svg?style=for-the-badge
 [issues-url]: https://github.com/ankit-v2-1/ecommerce-django-app/issues
-[license-shield]: https://img.shields.io/github/license/ankit-v2-1/ecommerce-django-app.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/ankit-v2-1/ecommerce-django-app.svg?
 [license-url]: https://github.com/ankit-v2-1/ecommerce-django-app/blob/dev/LICENSE
 [twitter-shield]: https://img.shields.io/twitter/follow/ankit_v2_1?style=for-the-badge&color=09f&labelColor=black.svg&logo=twitter&label=@ankit_v2_1
 [twitter-url]: https://twitter.com/ankit_v2_1
